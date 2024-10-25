@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
+}
+
+.container {
+  text-align: center;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  width: 300px;
+}
+
+h1 {
+  color: #333;
+}
+
+.calculator label {
+  display: block;
+  margin: 15px 0 5px;
+}
+
+.calculator input[type="date"] {
+  padding: 8px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#result {
+  margin-top: 15px;
+  font-size: 1.2em;
+  color: #333;
+}
+
+
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>Age Calculator</h1>
+  <div class="calculator">
+    <label for="birthdate">Enter Your Birthdate:</label>
+    <input type="date" id="birthdate">
+    <button id="btn">Calculate Age</button>
+    <p id="result"></p>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
+    <script>
+    const result = document.getElementById('result')
+  const getResultOfAge = () =>{
+    const input_value = document.getElementById('birthdate').value;
+    console.log(input_value);
+
+    if(!input_value){
+     result.textContent = "Please Enter valid date of birth.";
+     result.style.color = "red";
+    }
+
+    const birthOfDate = new Date(input_value);
+    const today = new Date(); 
+
+    if(birthOfDate > today){
+        result.textContent = "Birthdate cannot be in the future.";
+     result.style.color = "red";
+     return;
+    }
+    // console.log(birthOfDate)
+
+    const age = today.getFullYear() - birthOfDate.getFullYear();
+    const monthDiff = today.getMonth() - birthOfDate.getMonth();
+    const dayDiff  = today.getDate() - birthOfDate.getDate();
+
+    if (monthDiff < 0  || (monthDiff === 0 && dayDiff < 0)) {
+      result.innerText = "Birthdate cannot be in the future"
+    } else {
+        result.textContent = `your age is ${dayDiff} day, ${monthDiff} month, ${age} year old`
+     }
+  
+  }
+
+  const button = document.getElementById('btn');
+    button.addEventListener("click", getResultOfAge);
+    </script>
+</body>
+</html>
